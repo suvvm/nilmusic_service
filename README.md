@@ -69,7 +69,7 @@
 
 ### 系统架构图
 
-![image](https://github.com/suvvm/nilmusic_service/tree/master/resources/nilMusic系统架构.png)
+![image](https://raw.githubusercontent.com/suvvm/nilmusic_service/master/resources/nilMusic%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.png)
 
 ### 1、服务端
 
