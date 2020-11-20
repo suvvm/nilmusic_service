@@ -1,7 +1,6 @@
 package db
 
 import (
-	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
@@ -19,8 +18,7 @@ var (
 //	error	// 错误信息
 func InitDB(dbConfig *config.MysqlConfig) error {
 	// 构造DSN
-	dsn := fmt.Sprintf(dbConfig.DSNTemplate, dbConfig.Username, dbConfig.Password, dbConfig.Hostname,
-		dbConfig.Port, dbConfig.DBName, dbConfig.Timeout, dbConfig.ReadTimeout, dbConfig.WriteTimeout)
+	dsn := dbConfig.GetDSN()
 	// 根据DSN获取db链接
 	gormDB , err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
