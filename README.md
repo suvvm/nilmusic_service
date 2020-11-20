@@ -35,7 +35,7 @@
 | id      | int           | not null | auto increment                            | 专辑ID， 主键，自增 |
 | name    | nvarchar(200) | not null | new album                                 | 专辑名称            |
 | poster  | nvarchar(500) | not null | https://www.suvvm.work/images/ortrait.jpg | 专辑封面            |
-| playNum | nvarchar(20)  | not null | 0万                                       | 播放量              |
+| playnum | nvarchar(20)  | not null | 0万                                       | 播放量              |
 
 #### music
 
