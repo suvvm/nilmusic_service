@@ -45,7 +45,7 @@
 | name   | nvarchar(200) | not null | new music                                                    | 歌曲名称           |
 | poster | nvarchar(500) | not null | https://www.suvvm.work/images/ortrait.jpg                    | 歌曲封面           |
 | path   | nvarchar(500) | not null | http://m8.music.126.net/20201119220648/17233129086daaf596237f43b218beb5/ymusic/1a32/22d0/301e/3964f63dc993257f280cb214cefc403a.mp3 | 歌曲外链           |
-| author | nvarchar(200) | not null | 中央乐团合唱队                                               | 歌手               |
+| author | nvarchar(200) | not null | suvvm                                               | 歌手               |
 
 #### user_album
 
