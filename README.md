@@ -2,12 +2,12 @@
 
 ## 一、需求
 
-​	原有应用所有数据存储在本地relamDB中，且只根据json配置文件提供简单的歌单与播放功能，无法满足肥豪应付老师的需求，故对原有应用进行改造，将服务端与客户端分离，并对现有歌单功能进行扩充，视情况使用kotlin重构客户端。
+​	原有应用所有数据存储在本地relamDB中，且只根据json配置文件提供简单的专辑与播放功能，无法满足肥豪应付老师的需求，故对原有应用进行改造，将服务端与客户端分离，并对现有专辑功能进行扩充，视情况使用kotlin重构客户端。
 
 ## 二、功能与流程
 
-- 提供默认歌单，对所有用户可见
-- 用户可创建个人歌单，提供歌名、url、歌手、封面，保存并实现白嫖
+- 提供默认专辑，对所有用户可见
+- 用户可创建个人专辑，提供歌名、url、歌手、封面，保存并实现白嫖
 - 歌曲播放功能迁移到service
 - 实现歌曲播放页面进度条功能
 - 视情况添加混淆文件
@@ -113,7 +113,7 @@ response:
 	uid(int)
 ```
 
-3. 获取当前用户全部歌单
+3. 获取当前用户全部专辑
 
 ```
 Path:/nilmusic/list/all
@@ -134,7 +134,7 @@ response:
 			play_num(string)
 ```
 
-4. 创建歌单
+4. 创建专辑
 
 ```
 Path:/nilmusic/album/create
@@ -152,7 +152,7 @@ response:
 	msg(string)
 ```
 
-5. 删除歌单
+5. 删除专辑
 
 ```
 Path:/nilmusic/album/delete
@@ -168,7 +168,7 @@ response:
 	msg(string)
 ```
 
-6. 获取指定歌单中的音乐
+6. 获取指定专辑中的音乐
 
 ```
 Path:/nilmusic/album/music
@@ -190,7 +190,7 @@ response:
 			author(string)
 ```
 
-7. 向指定歌单中添加音乐
+7. 向指定专辑中添加音乐
 
 ```
 Path:/nilmusic/album/music/add
@@ -228,7 +228,7 @@ response:
 	msg(string)
 ```
 
-9. 删除歌单中的音乐
+9. 删除专辑中的音乐
 
 ```
 Path:/nilmusic/album/music/delete
@@ -249,6 +249,6 @@ response:
 ### 2、客户端
 
 - 提供http工具与服务端交互
-- 提供自定歌单相关UI
+- 提供自定专辑相关UI
 - 歌曲播放功能迁移到service
 

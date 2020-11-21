@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	dbConfig = "./conf/db_config.yml"
+	dbConfig = "./conf/db_config.yaml"
 )
 
 // InitConfig 初始化配置信息

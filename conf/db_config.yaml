@@ -1,12 +1,13 @@
-DSNTemplate: "%s:%s@tcp(%s:%s)/%s?timeout=%s&readTimeout=%s&writeTimeout=%s&parseTime=True&interpolateParams=True&loc=Local&autocommit=true"
-Username: "root"
-Password: "eed2bbb5adff0446"
-DBName: "nilmusic"
-Hostname: "101.201.70.76"
-Port: "3306"
-ConsulName: ""
-Timeout: "500ms"
-ReadTimeout: "1s"
-WriteTimeout: "2s"
-MaxIdle: 100
-MaxOpen: 1000
+DbConf:
+  DSNTemplate: "%s:%s@tcp(%s:%s)/%s?timeout=%s&readTimeout=%s&writeTimeout=%s&parseTime=True&interpolateParams=True&loc=Local&autocommit=true"
+  Username: "root"
+  Password: "eed2bbb5adff0446"
+  DBName: "nilmusic"
+  Hostname: "101.201.70.76"
+  Port: "3306"
+  ConsulName: ""
+  Timeout: "500ms"
+  ReadTimeout: "1s"
+  WriteTimeout: "2s"
+  MaxIdle: 100
+  MaxOpen: 1000

@@ -20,11 +20,12 @@ func InitDB(dbConfig *config.MysqlConfig) error {
 	// 构造DSN
 	dsn := dbConfig.GetDSN()
 	// 根据DSN获取db链接
-	DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	gDB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Printf("init gorm db conn err=%s", err)
 		return err
 	}
+	DB = gDB
 	db , err := DB.DB()	// 获取sql.DB
 	if err != nil {
 		log.Printf("get sql.DB conn err=%s", err)
