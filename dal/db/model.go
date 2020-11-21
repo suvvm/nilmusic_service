@@ -27,8 +27,16 @@ type UserAlbum struct {
 	Aid int `gorm:"column:aid"`
 }
 
+func (UserAlbum) TableName() string {
+	return "user_album"
+}
+
 type AlbumMusic struct {
 	ID int	`gorm:"column:id"`
 	Mid int `gorm:"column:mid"`
 	Aid int `gorm:"column:aid"`
+}
+
+func (AlbumMusic) TableName() string {
+	return "album_music"
 }
