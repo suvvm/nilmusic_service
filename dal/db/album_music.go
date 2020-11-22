@@ -1,6 +1,9 @@
 package db
 
-import "fmt"
+import (
+	"fmt"
+	"suvvm.work/nilmusic_service/model"
+)
 
 // AddAlbumMusic 插入专辑歌曲关系
 //
@@ -9,8 +12,8 @@ import "fmt"
 // 返回
 //	albumMusic *AlbumMusic	// 目标专辑歌曲关系信息
 //	error		// 错误信息
-func AddAlbumMusic(albumMusic *AlbumMusic) (*AlbumMusic, error) {
-	var selectResp []AlbumMusic
+func AddAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error) {
+	var selectResp []model.AlbumMusic
 	if albumMusic.Mid == 0 || albumMusic.Aid == 0 {	// 判断专辑歌曲关系信息是否完整
 		return nil, fmt.Errorf("AlbumMusic:missing require parameters")
 	}
@@ -28,8 +31,8 @@ func AddAlbumMusic(albumMusic *AlbumMusic) (*AlbumMusic, error) {
 // 返回
 //	*AlbumMusic		// 目标专辑歌曲关系完整信息
 //	error		// 错误信息
-func GetAlbumMusic(albumMusic *AlbumMusic) (*AlbumMusic, error){
-	var selectResp []AlbumMusic
+func GetAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error){
+	var selectResp []model.AlbumMusic
 	if albumMusic.Mid == 0 && albumMusic.Aid == 0 {	// 判断专辑歌曲关系信息是否完整
 		return nil, fmt.Errorf("AlbumMusic:missing require parameters")
 	}
@@ -58,7 +61,7 @@ func GetAlbumMusic(albumMusic *AlbumMusic) (*AlbumMusic, error){
 //	AlbumMusic *AlbumMusic	// 目标专辑歌曲关系信息
 // 返回
 //	error		// 错误信息
-func MdfAlbumMusic(albumMusic *AlbumMusic) error {
+func MdfAlbumMusic(albumMusic *model.AlbumMusic) error {
 	if albumMusic.ID == 0 { // 判断ID是否为空
 		return fmt.Errorf("AlbumMusic:missing require parameters")
 	}
@@ -81,17 +84,17 @@ func MdfAlbumMusic(albumMusic *AlbumMusic) error {
 //	AlbumMusic *AlbumMusic	// 目标专辑歌曲关系信息
 // 返回
 //	error		// 错误信息
-func DelAlbumMusic(albumMusic *AlbumMusic) error {
+func DelAlbumMusic(albumMusic *model.AlbumMusic) error {
 	if albumMusic.ID != 0 {	// 根据ID删除
-		if err := DB.Where("id=?", albumMusic.ID).Delete(&AlbumMusic{}).Error; err != nil {
+		if err := DB.Where("id=?", albumMusic.ID).Delete(&model.AlbumMusic{}).Error; err != nil {
 			return err
 		}
 	} else if albumMusic.Mid != 0 {	// 根据Mid删除
-		if err := DB.Where("mid=?", albumMusic.Mid).Delete(&AlbumMusic{}).Error; err != nil {
+		if err := DB.Where("mid=?", albumMusic.Mid).Delete(&model.AlbumMusic{}).Error; err != nil {
 			return err
 		}
 	} else {	// 根据aid删除
-		if err := DB.Where("aid=?", albumMusic.Aid).Delete(&AlbumMusic{}).Error; err != nil {
+		if err := DB.Where("aid=?", albumMusic.Aid).Delete(&model.AlbumMusic{}).Error; err != nil {
 			return err
 		}
 	}

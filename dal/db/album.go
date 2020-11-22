@@ -1,6 +1,9 @@
 package db
 
-import "fmt"
+import (
+	"fmt"
+	"suvvm.work/nilmusic_service/model"
+)
 
 // AddAlbum 插入专辑
 //
@@ -9,8 +12,8 @@ import "fmt"
 // 返回
 //	album *Album	// 目标专辑信息
 //	error			// 错误信息
-func AddAlbum(album *Album) (*Album, error) {
-	var selectResp []Album
+func AddAlbum(album *model.Album) (*model.Album, error) {
+	var selectResp []model.Album
 	if album.Name == ""{	// 判断专辑信息是否完整
 		return nil, fmt.Errorf("album:missing require parameters")
 	}
@@ -28,8 +31,8 @@ func AddAlbum(album *Album) (*Album, error) {
 // 返回
 //	*[]Album		// 查询结果
 //	error			// 错误信息
-func GetAlbum(album *Album) (*[]Album, error){
-	var selectResp []Album
+func GetAlbum(album *model.Album) (*[]model.Album, error){
+	var selectResp []model.Album
 	if album.ID != 0 {	// 根据ID查询
 		DB.Table("albums").Where("id=?", album.ID).Select([]string{"id", "name", "poster", " playnum"}).Find(&selectResp)
 		if len(selectResp) == 0 {
@@ -55,7 +58,7 @@ func GetAlbum(album *Album) (*[]Album, error){
 //	album *Album	// 目标专辑信息
 // 返回
 //	error			// 错误信息
-func MdfAlbum(album *Album) error {
+func MdfAlbum(album *model.Album) error {
 	if album.ID == 0 { // 判断ID是否为空
 		return fmt.Errorf("album:missing require parameters")
 	}
@@ -83,11 +86,11 @@ func MdfAlbum(album *Album) error {
 //	album *Album	// 目标专辑信息
 // 返回
 //	error			// 错误信息
-func DelAlbum(album *Album) error {
+func DelAlbum(album *model.Album) error {
 	if album.ID == 0 { // 判断ID是否为空
 		return fmt.Errorf("album:missing require parameters")
 	}
-	if err := DB.Where("id=?", album.ID).Delete(&Album{}).Error; err != nil {
+	if err := DB.Where("id=?", album.ID).Delete(&model.Album{}).Error; err != nil {
 		return err
 	}
 	return nil
