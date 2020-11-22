@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"suvvm.work/nilmusic_service/config"
+	"suvvm.work/nilmusic_service/model"
 	"testing"
 )
 
@@ -29,7 +30,7 @@ func init() {
 
 // TestAddUser 插入用户测试
 func TestAddUser(t *testing.T) {
-	user := &User{
+	user := &model.User{
 		Pnum: "15098997526",
 		Password: "Poiuytrewq1",
 	}
@@ -42,7 +43,7 @@ func TestAddUser(t *testing.T) {
 
 // TestGetUser 查询用户测试
 func TestGetUser(t *testing.T) {
-	user := &User{
+	user := &model.User{
 		Pnum: "15098997526",
 	}
 	user, err := GetUser(user)
@@ -54,12 +55,12 @@ func TestGetUser(t *testing.T) {
 
 // TestMdfUser 修改用户测试
 func TestMdfUser(t *testing.T) {
-	user, err := GetUser(&User{Pnum: "15098997526"})
+	user, err := GetUser(&model.User{Pnum: "15098997526"})
 	if err != nil {
 		t.Logf("%v", err)
 	}
 	t.Logf("resp user:%v", user)
-	tusr := &User{
+	tusr := &model.User{
 		ID: user.ID,
 		Password: "!!!!!!!!!!!!",
 	}
@@ -72,12 +73,12 @@ func TestMdfUser(t *testing.T) {
 
 // TestDelUser 删除用户测试
 func TestDelUser(t *testing.T) {
-	user, err := GetUser(&User{Pnum: "15098997526"})
+	user, err := GetUser(&model.User{Pnum: "15098997526"})
 	if err != nil {
 		t.Logf("%v", err)
 	}
 	t.Logf("resp user:%v", user)
-	tusr := &User{
+	tusr := &model.User{
 		Pnum: user.Pnum,
 	}
 	err = DelUser(tusr)
@@ -89,7 +90,7 @@ func TestDelUser(t *testing.T) {
 
 // TestAddAlbum 插入专辑测试
 func TestAddAlbum(t *testing.T) {
-	album := &Album{
+	album := &model.Album{
 		Name: "武器A",
 		Poster: "https://www.suvvm.work/images/ortrait.jpg",
 		Playnum: "0万",
@@ -103,7 +104,7 @@ func TestAddAlbum(t *testing.T) {
 
 // TestGetAlbum 查询专辑测试
 func TestGetAlbum(t *testing.T) {
-	album := &Album{
+	album := &model.Album{
 		//ID: 20000000,
 		Name: "武器A",
 	}
@@ -116,7 +117,7 @@ func TestGetAlbum(t *testing.T) {
 
 // TestMdfAlbum 修改专辑测试
 func TestMdfAlbum(t *testing.T) {
-	albumList, err := GetAlbum(&Album{ID: 20000000})
+	albumList, err := GetAlbum(&model.Album{ID: 20000000})
 	if err != nil {
 		t.Logf("%v", err)
 	}
@@ -124,7 +125,7 @@ func TestMdfAlbum(t *testing.T) {
 		t.Error("no data")
 		return
 	}
-	talbum:= &Album{
+	talbum:= &model.Album{
 		ID: (*albumList)[0].ID,
 		Name: "武器B",
 	}
@@ -137,7 +138,7 @@ func TestMdfAlbum(t *testing.T) {
 
 // TestDelAlbum 删除专辑测试
 func TestDelAlbum(t *testing.T) {
-	err := DelAlbum(&Album{ID: 20000000})
+	err := DelAlbum(&model.Album{ID: 20000000})
 	if err != nil {
 		t.Logf("%v", err)
 	}
@@ -146,7 +147,7 @@ func TestDelAlbum(t *testing.T) {
 
 // TestAddMusic 插入音乐测试
 func TestAddMusic(t *testing.T) {
-	music := &Music{
+	music := &model.Music{
 		Name: "国际歌",
 		Poster: "https://www.suvvm.work/images/ortrait.jpg",
 		Path: "http://m8.music.126.net/20201119220648/17233129086daaf596237f43b218beb5/ymusic/1a32/22d0/301e/3964f63dc993257f280cb214cefc403a.mp3 ",
@@ -161,7 +162,7 @@ func TestAddMusic(t *testing.T) {
 
 // TestGetMusic查询音乐测试
 func TestGetMusic(t *testing.T) {
-	music := &Music{
+	music := &model.Music{
 		//ID: 30000000,
 		Name: "国际歌",
 	}
@@ -174,7 +175,7 @@ func TestGetMusic(t *testing.T) {
 
 // TestMdfMusic 修改音乐测试
 func TestMdfMusic(t *testing.T) {
-	musicList, err := GetMusic(&Music{ID: 30000000})
+	musicList, err := GetMusic(&model.Music{ID: 30000000})
 	if err != nil {
 		t.Logf("%v", err)
 	}
@@ -182,7 +183,7 @@ func TestMdfMusic(t *testing.T) {
 		t.Error("no data")
 		return
 	}
-	tmusic:= &Music{
+	tmusic:= &model.Music{
 		ID: (*musicList)[0].ID,
 		Author: "中央合唱团",
 	}
@@ -195,7 +196,7 @@ func TestMdfMusic(t *testing.T) {
 
 // TestDelMusic 删除音乐测试
 func TestDelMusic(t *testing.T) {
-	err := DelMusic(&Music{ID: 30000000})
+	err := DelMusic(&model.Music{ID: 30000000})
 	if err != nil {
 		t.Logf("%v", err)
 	}
@@ -204,7 +205,7 @@ func TestDelMusic(t *testing.T) {
 
 // TestAddUserAlbum 插入用户专辑关系
 func TestAddUserAlbum(t *testing.T) {
-	userAlbum := &UserAlbum{
+	userAlbum := &model.UserAlbum{
 		Uid: 10000000,
 		Aid: 20000001,
 	}
@@ -217,7 +218,7 @@ func TestAddUserAlbum(t *testing.T) {
 
 // TestGetMusic查询用户专辑关系测试
 func TestGetUserAlbum(t *testing.T) {
-	userAlbum := &UserAlbum{
+	userAlbum := &model.UserAlbum{
 		//ID: 30000000,
 		Uid: 10000000,
 	}
@@ -230,7 +231,7 @@ func TestGetUserAlbum(t *testing.T) {
 
 // TestDelMusic 删除用户专辑关系测试
 func TestDelUserAlbum(t *testing.T) {
-	err := DelUserAlbum(&UserAlbum{Uid: 10000000})
+	err := DelUserAlbum(&model.UserAlbum{Uid: 10000000})
 	if err != nil {
 		t.Logf("%v", err)
 	}
@@ -239,7 +240,7 @@ func TestDelUserAlbum(t *testing.T) {
 
 // TestAddAlbumMusic 插入专辑音乐关系
 func TestAddAlbumMusic(t *testing.T) {
-	albumMusic := &AlbumMusic{
+	albumMusic := &model.AlbumMusic{
 		Mid: 30000000,
 		Aid: 20000001,
 	}
@@ -252,7 +253,7 @@ func TestAddAlbumMusic(t *testing.T) {
 
 // TestGetAlbumMusic查询专辑音乐关系测试
 func TestGetAlbumMusic(t *testing.T) {
-	albumMusic := &AlbumMusic{
+	albumMusic := &model.AlbumMusic{
 		Aid: 20000001,
 	}
 	albumMusic, err := GetAlbumMusic(albumMusic)
@@ -264,10 +265,9 @@ func TestGetAlbumMusic(t *testing.T) {
 
 // TestDelMusic 删除专辑音乐关系测试
 func TestDelAlbumMusic(t *testing.T) {
-	err := DelAlbumMusic(&AlbumMusic{Aid: 20000001})
+	err := DelAlbumMusic(&model.AlbumMusic{Aid: 20000001})
 	if err != nil {
 		t.Logf("%v", err)
 	}
 	t.Logf("del AlbumMusic success")
 }
-

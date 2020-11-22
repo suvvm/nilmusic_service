@@ -1,6 +1,9 @@
 package db
 
-import "fmt"
+import (
+	"fmt"
+	"suvvm.work/nilmusic_service/model"
+)
 
 // AddMusic 插入音乐
 //
@@ -9,8 +12,8 @@ import "fmt"
 // 返回
 //	music *Music	// 目标音乐信息
 //	error			// 错误信息
-func AddMusic(music *Music) (*Music, error) {
-	var selectResp []Music
+func AddMusic(music *model.Music) (*model.Music, error) {
+	var selectResp []model.Music
 	if music.Name == "" || music.Path == ""{	// 判断音乐信息是否完整
 		return nil, fmt.Errorf("music:missing require parameters")
 	}
@@ -28,8 +31,8 @@ func AddMusic(music *Music) (*Music, error) {
 // 返回
 //	*[]Music		// 查询结果
 //	error			// 错误信息
-func GetMusic(music *Music) (*[]Music, error){
-	var selectResp []Music
+func GetMusic(music *model.Music) (*[]model.Music, error){
+	var selectResp []model.Music
 	if music.ID != 0 {	// 根据ID查询
 		DB.Table("musics").Where("id=?", music.ID).Select([]string{"id", "name", "poster", "path", "author"}).Find(&selectResp)
 		if len(selectResp) == 0 {
@@ -55,7 +58,7 @@ func GetMusic(music *Music) (*[]Music, error){
 //	music *Music	// 目标音乐信息
 // 返回
 //	error			// 错误信息
-func MdfMusic(music *Music) error {
+func MdfMusic(music *model.Music) error {
 	if music.ID == 0 { // 判断ID是否为空
 		return fmt.Errorf("music:missing require parameters")
 	}
@@ -88,11 +91,11 @@ func MdfMusic(music *Music) error {
 //	music *Music	// 目标音乐信息
 // 返回
 //	error			// 错误信息
-func DelMusic(music *Music) error {
+func DelMusic(music *model.Music) error {
 	if music.ID == 0 { // 判断ID是否为空
 		return fmt.Errorf("music:missing require parameters")
 	}
-	if err := DB.Where("id=?", music.ID).Delete(&Music{}).Error; err != nil {
+	if err := DB.Where("id=?", music.ID).Delete(&model.Music{}).Error; err != nil {
 		return err
 	}
 	return nil
