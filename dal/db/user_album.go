@@ -31,7 +31,7 @@ func AddUserAlbum(userAlbum *model.UserAlbum) (*model.UserAlbum, error) {
 // 返回
 //	*UserAlbum		// 目标专辑用户关系完整信息
 //	error		// 错误信息
-func GetUserAlbum(userAlbum *model.UserAlbum) (*model.UserAlbum, error){
+func GetUserAlbum(userAlbum *model.UserAlbum) (*[]model.UserAlbum, error){
 	var selectResp []model.UserAlbum
 	if userAlbum.Uid == 0 && userAlbum.Aid == 0 {	// 判断专辑用户关系信息是否完整
 		return nil, fmt.Errorf("UserAlbum:missing require parameters")
@@ -52,7 +52,7 @@ func GetUserAlbum(userAlbum *model.UserAlbum) (*model.UserAlbum, error){
 			return nil, fmt.Errorf("UserAlbum:query aid=%d, resp no datas", userAlbum.Aid)
 		}
 	}
-	return &selectResp[0], nil
+	return &selectResp, nil
 }
 
 // MdfUserAlbum 修改专辑用户关系信息
