@@ -222,11 +222,11 @@ func TestGetUserAlbum(t *testing.T) {
 		//ID: 30000000,
 		Uid: 10000000,
 	}
-	userAlbum, err := GetUserAlbum(userAlbum)
+	userAlbums, err := GetUserAlbum(userAlbum)
 	if err != nil {
 		t.Logf("%v", err)
 	}
-	t.Log(userAlbum)
+	t.Log(userAlbums)
 }
 
 // TestDelMusic 删除用户专辑关系测试
