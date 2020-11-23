@@ -31,7 +31,7 @@ func AddAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error) {
 // 返回
 //	*AlbumMusic		// 目标专辑歌曲关系完整信息
 //	error		// 错误信息
-func GetAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error){
+func GetAlbumMusic(albumMusic *model.AlbumMusic) (*[]model.AlbumMusic, error){
 	var selectResp []model.AlbumMusic
 	if albumMusic.Mid == 0 && albumMusic.Aid == 0 {	// 判断专辑歌曲关系信息是否完整
 		return nil, fmt.Errorf("AlbumMusic:missing require parameters")
@@ -52,7 +52,7 @@ func GetAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error){
 			return nil, fmt.Errorf("AlbumMusic:query aid=%d, resp no datas", albumMusic.Aid)
 		}
 	}
-	return &selectResp[0], nil
+	return &selectResp, nil
 }
 
 // MdfAlbumMusic 修改专辑歌曲关系信息

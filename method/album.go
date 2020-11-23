@@ -9,7 +9,7 @@ import (
 )
 
 // DoGetAllAlbum 获取用户全部专辑业务逻辑
-// 判断用户uid是否获取成功，并根据uid获取对应专辑列表，并猴枣获取专辑响应
+// 判断用户uid是否获取成功，并根据uid获取对应专辑列表，并构造获取专辑响应
 //
 // 入参
 //	uid int				// 用户uid
@@ -42,12 +42,12 @@ func DoGetAllAlbum (uid int) *model.AllAlbumResp {
 // 入参
 //	uid int			// 用户uid
 // 返回
-//	[]*model.Album	// 歌单列表
+//	[]*model.Album	// 专辑列表
 //	error			// 错误信息
 func GetAlbumByUID (uid int)  ([]*model.Album, error) {
 	albumList := make([]*model.Album, 0)
-	userAlbum := &model.UserAlbum{ID: uid}
-	userAlbumList, err := db.GetUserAlbum(userAlbum)	// user_album获取uis对应的全部关系
+	userAlbum := &model.UserAlbum{Uid: uid}
+	userAlbumList, err := db.GetUserAlbum(userAlbum)	// user_album获取uid对应的全部关系
 	if err != nil {
 		return nil, err
 	}

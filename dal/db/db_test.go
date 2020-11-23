@@ -256,11 +256,11 @@ func TestGetAlbumMusic(t *testing.T) {
 	albumMusic := &model.AlbumMusic{
 		Aid: 20000001,
 	}
-	albumMusic, err := GetAlbumMusic(albumMusic)
+	tAlbumMusic, err := GetAlbumMusic(albumMusic)
 	if err != nil {
 		t.Logf("%v", err)
 	}
-	t.Log(albumMusic)
+	t.Log(tAlbumMusic)
 }
 
 // TestDelMusic 删除专辑音乐关系测试
