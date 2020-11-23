@@ -199,11 +199,11 @@ Headers:
 	content-type:application/json
 UrlParam:
 BodyParam:
-	aid(int)*
+    aid(int)*
 	name(string)*
-  poster(string)*
-  path(string)*
-  author(string)*
+    poster(string)*
+    path(string)*
+    author(string)*
 response:
 	code(string)
 	msg(string)
@@ -220,9 +220,9 @@ UrlParam:
 BodyParam:
 	mid(int)*
 	name(string)
-  poster(string)
-  path(string)
-  author(string)
+    poster(string)
+    path(string)
+    author(string)
 response:
 	code(string)
 	msg(string)
