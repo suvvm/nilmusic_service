@@ -207,7 +207,7 @@ func TestDelMusic(t *testing.T) {
 func TestAddUserAlbum(t *testing.T) {
 	userAlbum := &model.UserAlbum{
 		Uid: 10000000,
-		Aid: 20000001,
+		Aid: 20000007,
 	}
 	userAlbum, err := AddUserAlbum(userAlbum)
 	if err != nil {

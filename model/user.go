@@ -1,9 +1,9 @@
 package model
 
 type User struct {
-	ID int	`gorm:"column:id"`
-	Pnum string	`gorm:"column:pnum"`
-	Password string `gorm:"column:password"`
+	ID int	`gorm:"column:id" json:"id"`
+	Pnum string	`gorm:"column:pnum" json:"pnum"`
+	Password string `gorm:"column:password" json:"password"`
 }
 
 type UserAlbum struct {

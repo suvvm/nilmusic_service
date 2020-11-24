@@ -146,7 +146,7 @@ BodyParam:
 	uid(int)*
 	name(string)*
 	poster(string)*
-	playnum(string)*
+	play_num(string)*
 response:
 	code(string)
 	msg(string)
