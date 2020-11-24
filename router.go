@@ -6,6 +6,8 @@ import (
 )
 
 func register(r *gin.Engine) {
+	// 测试接口
+	r.Any("/nilmusic/ping", handler.Pong)
 	// 用户管理
 	r.POST("/nilmusic/user/login", handler.Login)
 	r.POST("/nilmusic/user/register", handler.Register)
