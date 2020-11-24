@@ -47,7 +47,7 @@ func DoRegister(req *model.RegisterReq) *model.RegisterResp {
 	_, err := db.GetUser(req.ToUser())	// 检查用户是否已经存在
 	if err == nil {
 		resp.Code = common.HandlerDBInsertErr
-		resp.Msg = fmt.Sprintf("%v", err)
+		resp.Msg = "user has already existed"
 		return resp
 	}
 	_, err = db.AddUser(req.ToUser())	// 注册用户至DB
