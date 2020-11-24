@@ -91,7 +91,7 @@ func TestDelUser(t *testing.T) {
 // TestAddAlbum 插入专辑测试
 func TestAddAlbum(t *testing.T) {
 	album := &model.Album{
-		Name: "武器A",
+		Name: "武器D",
 		Poster: "https://www.suvvm.work/images/ortrait.jpg",
 		Playnum: "0万",
 	}
@@ -160,7 +160,7 @@ func TestAddMusic(t *testing.T) {
 	t.Logf("%v", music)
 }
 
-// TestGetMusic查询音乐测试
+// TestGetMusic 查询音乐测试
 func TestGetMusic(t *testing.T) {
 	music := &model.Music{
 		//ID: 30000000,

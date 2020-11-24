@@ -13,15 +13,11 @@ import (
 //	albumMusic *AlbumMusic	// 目标专辑歌曲关系信息
 //	error		// 错误信息
 func AddAlbumMusic(albumMusic *model.AlbumMusic) (*model.AlbumMusic, error) {
-	var selectResp []model.AlbumMusic
 	if albumMusic.Mid == 0 || albumMusic.Aid == 0 {	// 判断专辑歌曲关系信息是否完整
 		return nil, fmt.Errorf("AlbumMusic:missing require parameters")
 	}
-	DB.Create(albumMusic).Select([]string{"id", "aid", "mid"}).Find(&selectResp)	// 执行插入操作
-	if len(selectResp) == 0 {
-		return nil, fmt.Errorf("AlbumMusic:instert album_music mid=%d aid=%d fail, resp no datas", albumMusic.Mid, albumMusic.Aid)
-	}
-	return &selectResp[0], nil
+	DB.Create(albumMusic)	// 执行插入操作
+	return albumMusic, nil
 }
 
 // GetAlbumMusic 查询专辑歌曲关系信息
