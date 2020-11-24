@@ -13,15 +13,11 @@ import (
 //	music *Music	// 目标音乐信息
 //	error			// 错误信息
 func AddMusic(music *model.Music) (*model.Music, error) {
-	var selectResp []model.Music
 	if music.Name == "" || music.Path == ""{	// 判断音乐信息是否完整
 		return nil, fmt.Errorf("music:missing require parameters")
 	}
-	DB.Create(music).Select([]string{"id", "name", "poster", "path", "author"}).Find(&selectResp)	// 执行插入操作
-	if len(selectResp) == 0 {	// 查询插入后目标音乐是否存在
-		return nil,  fmt.Errorf("music:instert user name=%s fail, resp no datas", music.Name)
-	}
-	return &selectResp[0], nil
+	DB.Create(music)	// 执行插入操作
+	return music, nil
 }
 
 // GetMusic 查询音乐信息

@@ -13,15 +13,11 @@ import (
 //	userAlbum *UserAlbum	// 目标专辑用户关系信息
 //	error		// 错误信息
 func AddUserAlbum(userAlbum *model.UserAlbum) (*model.UserAlbum, error) {
-	var selectResp []model.UserAlbum
 	if userAlbum.Uid == 0 || userAlbum.Aid == 0 {	// 判断专辑用户关系信息是否完整
 		return nil, fmt.Errorf("UserAlbum:missing require parameters")
 	}
-	DB.Create(userAlbum).Select([]string{"id", "uid", "aid"}).Find(&selectResp)	// 执行插入操作
-	if len(selectResp) == 0 {
-		return nil, fmt.Errorf("UserAlbum:instert user_album uid=%d aid=%d fail, resp no datas", userAlbum.Uid, userAlbum.Aid)
-	}
-	return &selectResp[0], nil
+	DB.Create(userAlbum)	// 执行插入操作
+	return userAlbum, nil
 }
 
 // GetUserAlbum 查询专辑用户关系信息

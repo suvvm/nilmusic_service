@@ -13,15 +13,11 @@ import (
 //	user *User	// 目标用户信息
 //	error		// 错误信息
 func AddUser(user *model.User) (*model.User, error) {
-	var selectResp []model.User
 	if user.Pnum == "" || user.Password == "" {	// 判断用户信息是否完整
 		return nil, fmt.Errorf("user:missing require parameters")
 	}
-	DB.Create(user).Select([]string{"id", "pnum"}).Find(&selectResp)	// 执行插入操作
-	if len(selectResp) == 0 {
-		return nil, fmt.Errorf("user:instert user pnum=%s fail, resp no datas",user.Pnum)
-	}
-	return &selectResp[0], nil
+	DB.Create(user)	// 执行插入操作
+	return user, nil
 }
 
 // GetUser 查询用户信息

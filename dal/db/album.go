@@ -13,15 +13,11 @@ import (
 //	album *Album	// 目标专辑信息
 //	error			// 错误信息
 func AddAlbum(album *model.Album) (*model.Album, error) {
-	var selectResp []model.Album
 	if album.Name == ""{	// 判断专辑信息是否完整
 		return nil, fmt.Errorf("album:missing require parameters")
 	}
-	DB.Create(album).Select([]string{"id", "name", "poster", "playnum"}).Find(&selectResp)	// 执行插入操作
-	if len(selectResp) == 0 {
-		return nil, fmt.Errorf("album:instert user name=%s fail, resp no datas", album.Name)
-	}
-	return &selectResp[0], nil
+	DB.Create(album)	// 执行插入操作
+	return album, nil
 }
 
 // GetAlbum 查询专辑信息
