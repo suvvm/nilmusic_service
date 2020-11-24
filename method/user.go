@@ -44,7 +44,13 @@ func DoLogin(req *model.LoginReq) *model.LoginResp {
 //	*model.RegisterResp		// 注册响应
 func DoRegister(req *model.RegisterReq) *model.RegisterResp {
 	resp := &model.RegisterResp{}
-	_, err := db.AddUser(req.ToUser())	// 注册用户至DB
+	_, err := db.GetUser(req.ToUser())	// 检查用户是否已经存在
+	if err == nil {
+		resp.Code = common.HandlerDBInsertErr
+		resp.Msg = fmt.Sprintf("%v", err)
+		return resp
+	}
+	_, err = db.AddUser(req.ToUser())	// 注册用户至DB
 	if err != nil {
 		resp.Code = common.HandlerDBInsertErr
 		resp.Msg = fmt.Sprintf("%v", err)
