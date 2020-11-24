@@ -1,10 +1,10 @@
 package model
 
 type Album struct {
-	ID int	`gorm:"column:id"`
-	Name string	`gorm:"column:name"`
-	Poster string `gorm:"column:poster"`
-	Playnum string `gorm:"column:playnum"`
+	ID int	`gorm:"column:id" json:"id"`
+	Name string	`gorm:"column:name" json:"name"`
+	Poster string `gorm:"column:poster" json:"poster"`
+	Playnum string `gorm:"column:playnum" json:"play_num"`
 }
 
 type AlbumMusic struct {
@@ -27,7 +27,7 @@ type CreateAlbumReq struct {
 	UID int `json:"uid"`
 	Name string `json:"name"`
 	Poster string `json:"poster"`
-	Playnum string `json:"playnum"`
+	Playnum string `json:"play_num"`
 }
 
 func (req *CreateAlbumReq) ToAlbum() *Album {
