@@ -35,7 +35,7 @@ func main() {
 	InitConfig() // 初始化服务端配置信息
 	r := gin.Default()
 	register(r)                     // 注册路由
-	if err := r.Run(); err != nil { // 启动api层服务端
+	if err := r.Run(":6789"); err != nil { // 启动api层服务端
 		log.Println("run api service fail")
 	}
 }
