@@ -92,7 +92,7 @@ BodyParam:
 	pnum(string)* 
 	password(string)*
 response:
-	code(string)
+	code(int)
 	msg(string)
 ```
 
@@ -108,7 +108,7 @@ BodyParam:
 	pnum(string)*
 	password(string)*
 response:
-	code(string)
+	code(int)
 	msg(string)
 	uid(int)
 ```
@@ -124,7 +124,7 @@ UrlParam:
 	uid(int)*
 BodyParam:
 response:
-	code(string)
+	code(int)
 	msg(string)
 	album_list(array)
 		(object)
@@ -148,8 +148,9 @@ BodyParam:
 	poster(string)*
 	play_num(string)*
 response:
-	code(string)
+	code(int)
 	msg(string)
+    aid(int)
 ```
 
 5. 删除专辑
@@ -164,7 +165,7 @@ BodyParam:
 	uid(int)*
 	aid(int)*
 response:
-	code(string)
+	code(int)
 	msg(string)
 ```
 
@@ -179,7 +180,7 @@ UrlParam:
 	aid(int)*
 BodyParam:
 response:
-	code(string)
+	code(int)
 	msg(string)
 	music_list(array)
 		(object)
@@ -205,8 +206,9 @@ BodyParam:
     path(string)*
     author(string)*
 response:
-	code(string)
+	code(int)
 	msg(string)
+    mid(int)
 ```
 
 8. 修改指定音乐
@@ -224,7 +226,7 @@ BodyParam:
     path(string)
     author(string)
 response:
-	code(string)
+	code(int)
 	msg(string)
 ```
 
@@ -240,7 +242,7 @@ BodyParam:
 	aid(int)*
 	mid(int)*
 response:
-	code(string)
+	code(int)
 	msg(string)
 ```
 

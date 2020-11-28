@@ -76,6 +76,7 @@ func DoCreateAlbum (req *model.CreateAlbumReq) *model.CreateAlbumResp {
 	resp := &model.CreateAlbumResp{
 		Code: common.HandlerSuccess,
 		Msg: "create album success",
+		AID: 0,
 	}
 	album, err := db.AddAlbum(req.ToAlbum())	// 持久化专辑至DB
 	if err != nil {
@@ -83,6 +84,7 @@ func DoCreateAlbum (req *model.CreateAlbumReq) *model.CreateAlbumResp {
 		resp.Msg = fmt.Sprintf("db insert album err=%v", err)
 		return resp
 	}
+	resp.AID = album.ID
 	userAlbum := &model.UserAlbum{
 		Uid: req.UID,
 		Aid: album.ID,

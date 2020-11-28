@@ -41,6 +41,7 @@ func (req *CreateAlbumReq) ToAlbum() *Album {
 type CreateAlbumResp struct {
 	Code int `json:"code"`
 	Msg string `json:"msg"`
+	AID int `json:"aid"`
 }
 
 type DeleteAlbumReq struct {

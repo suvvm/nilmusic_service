@@ -35,6 +35,7 @@ func CreateAlbum (ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": common.HandlerReadBodyErr,
 			"msg": common.HandlerReadBodyErrMsg,
+			"aid": 0,
 		})
 		return
 	}

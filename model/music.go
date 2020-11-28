@@ -34,6 +34,7 @@ func (req *AddMusicReq) ToMusic () *Music {
 type AddMusicResp struct {
 	Code int `json:"code"`
 	Msg string `json:"msg"`
+	MID int `json:"mid"`
 }
 
 type MdfMusicReq struct {
