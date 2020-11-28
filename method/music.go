@@ -76,6 +76,7 @@ func DoAddMusic (req *model.AddMusicReq) *model.AddMusicResp {
 	resp := &model.AddMusicResp{
 		Code: common.HandlerSuccess,
 		Msg: "add music success",
+		MID: 0,
 	}
 	music, err := db.AddMusic(req.ToMusic())	// 持久化音乐至DB
 	if err != nil {
@@ -83,6 +84,7 @@ func DoAddMusic (req *model.AddMusicReq) *model.AddMusicResp {
 		resp.Msg = fmt.Sprintf("db insert music err=%v", err)
 		return resp
 	}
+	resp.MID = music.ID
 	albumMusic := &model.AlbumMusic{
 		Aid: req.AID,
 		Mid: music.ID,

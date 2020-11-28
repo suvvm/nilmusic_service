@@ -35,6 +35,7 @@ func AddMusic(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": common.HandlerReadBodyErr,
 			"msg": common.HandlerReadBodyErrMsg,
+			"mid": 0,
 		})
 		return
 	}
