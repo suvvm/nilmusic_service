@@ -81,7 +81,11 @@ func MdfAlbumMusic(albumMusic *model.AlbumMusic) error {
 // 返回
 //	error		// 错误信息
 func DelAlbumMusic(albumMusic *model.AlbumMusic) error {
-	if albumMusic.ID != 0 {	// 根据ID删除
+	if albumMusic.Mid != 0 && albumMusic.Aid != 0 {
+		if err := DB.Where("mid=? AND aid=?", albumMusic.Mid, albumMusic.Aid).Delete(&model.AlbumMusic{}).Error; err != nil {
+			return err
+		}
+	}else if albumMusic.ID != 0 {	// 根据ID删除
 		if err := DB.Where("id=?", albumMusic.ID).Delete(&model.AlbumMusic{}).Error; err != nil {
 			return err
 		}

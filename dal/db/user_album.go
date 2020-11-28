@@ -81,7 +81,11 @@ func MdfUserAlbum(userAlbum *model.UserAlbum) error {
 // 返回
 //	error		// 错误信息
 func DelUserAlbum(userAlbum *model.UserAlbum) error {
-	if userAlbum.ID != 0 {	// 根据ID删除
+	if userAlbum.Uid != 0 && userAlbum.Aid != 0 {
+		if err := DB.Where("aid=? AND uid=?", userAlbum.Aid, userAlbum.Uid).Delete(&model.UserAlbum{}).Error; err != nil {
+			return err
+		}
+	} else if userAlbum.ID != 0 {	// 根据ID删除
 		if err := DB.Where("id=?", userAlbum.ID).Delete(&model.UserAlbum{}).Error; err != nil {
 			return err
 		}
